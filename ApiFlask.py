@@ -1,7 +1,7 @@
 import os
-from werkzeug.utils import secure_filename
+from werkzeug.utils import secure_filename, generate_password_hash, check_password_hash
 from flask import Flask, jsonify, render_template, request, session
-import verifi 
+from verifi import login_manager
 from flask_login import login_required
 
 ##############################################################
@@ -10,7 +10,7 @@ app = Flask(__name__)
 # Carpeta de subida
 app.config['UPLOAD_FOLDER'] = './ArchivosPDF'
 # Sesion
-app.secret_key = 'app secret key'
+app.secret_key = generate_password_hash('foobar')
 
 @app.route('/')
 def index():
