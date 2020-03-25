@@ -18,7 +18,7 @@ def index():
         session['counter'] += 1
     else:
         session['counter'] = 1
-    return 'Counter: '+str(session['counter'])
+    return 'Ingresos registrados en sesion: '+str(session['counter'])
 	# return jsonify({"mensaje": "Api rest hecha en Python Flask : Direcciones: /subir, /items, /item/<id>"})
 
 @app.route('/items')
