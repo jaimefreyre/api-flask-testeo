@@ -1,5 +1,5 @@
 import os
-from werkzeug import secure_filename
+from werkzeug.utils import secure_filename
 from flask import Flask, jsonify, render_template, request
 
 # instancia del objeto Flask
@@ -10,9 +10,7 @@ app.config['UPLOAD_FOLDER'] = './Archivos PDF'
 
 @app.route('/')
 def inicio():
-	return jsonify({"mensaje": "Api rest hecha en Python Flask : Direcciones: /pingo, /items, /item/<id>"})
-
-
+	return jsonify({"mensaje": "Api rest hecha en Python Flask : Direcciones: /subir, /items, /item/<id>"})
 
 @app.route("/subir")
 def upload_file():
