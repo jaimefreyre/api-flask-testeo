@@ -8,7 +8,7 @@ from flask_login import login_required
 # instancia del objeto Flask
 app = Flask(__name__)
 # Carpeta de subida
-app.config['UPLOAD_FOLDER'] = './Archivos PDF'
+app.config['UPLOAD_FOLDER'] = './ArchivosPDF'
 # Sesion
 app.secret_key = 'app secret key'
 
