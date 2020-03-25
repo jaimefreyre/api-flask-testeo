@@ -15,7 +15,7 @@ def inicio():
 @app.route("/subir")
 def upload_file():
  # renderiamos la plantilla "forma1.html"
- return render_template('forma1.html')
+ return render_template('./forma1.html')
 
 @app.route("/upload", methods=['POST'])
 def uploader():
