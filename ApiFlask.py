@@ -1,16 +1,25 @@
 import os
 from werkzeug.utils import secure_filename
-from flask import Flask, jsonify, render_template, request
+from flask import Flask, jsonify, render_template, request, session
 from verifi import login_manager
+from flask_login import login_required
 
+##############################################################
 # instancia del objeto Flask
 app = Flask(__name__)
 # Carpeta de subida
 app.config['UPLOAD_FOLDER'] = './Archivos PDF'
+# Sesion
+app.secret_key = 'app secret key'
 
 @app.route('/')
-def inicio():
-	return jsonify({"mensaje": "Api rest hecha en Python Flask : Direcciones: /subir, /items, /item/<id>"})
+def index():
+    if 'counter' in session:
+        session['counter'] += 1
+    else:
+        session['counter'] = 1
+    return 'Counter: '+str(session['counter'])
+	# return jsonify({"mensaje": "Api rest hecha en Python Flask : Direcciones: /subir, /items, /item/<id>"})
 
 @app.route('/items')
 def items():
@@ -23,7 +32,7 @@ def show_item(id):
   return 'Id del Item es: %s' % id
 
 
-
+###########################################################
 #Carga de Archivos
 @app.route("/subir")
 def upload_file():
@@ -41,15 +50,16 @@ def uploader():
   # Retornamos una respuesta satisfactoria
   return "<h1>Archivo subido exitosamente</h1>"
 
-
-
-
-
+################################################################
 #Login
 #libreria de login
 @app.route('/login', methods=['GET', 'POST'])
 def login():
-    return 'Sin configuracion de Base'
+    if request.method == 'POST':
+        do_the_login()
+    else:
+        show_the_login_form()
+    
     # Se construye a traves de validacion cliente un objeto LoginForm
     # form = LoginForm()
     # if form.validate_on_submit():
