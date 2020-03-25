@@ -80,9 +80,9 @@ def login():
 
 
 @app.route("/settings")
-  @login_required
-  def settings():
-    pass
+# @login_required
+def settings():
+	pass
 
 
 
