@@ -1,7 +1,7 @@
 import os
 from werkzeug.utils import secure_filename
 from flask import Flask, jsonify, render_template, request, session
-from verifi import login_manager
+import verifi 
 from flask_login import login_required
 
 ##############################################################
